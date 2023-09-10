@@ -1,35 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+import { Todo } from "./Components/Todo"
 
-function App() {
-  const [count, setCount] = useState(0)
+export function App() {
+  const [todoText, setTodoText] = useState('')
+  const [todos, setTodos] = useState(() => {
+    const todos = JSON.parse(localStorage.getItem('todos-list'))
+
+    if (todos) {
+      return todos
+    }
+    return []
+  })
+
+
+  function handleTodoTextChange(ev) {
+    setTodoText(ev.target.value)
+  }
+
+  function handleTodoSubmit(ev) {
+    ev.preventDefault()
+
+    const newTodo = {
+      todoText: todoText,
+      isComplete: false
+    }
+
+    const newTodos = [...todos, newTodo]
+
+    setTodos(newTodos)
+    setTodoText('')
+
+    localStorage.setItem('todos-list', JSON.stringify(newTodos))
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="container">
+      <header>
+        <h1>Todo</h1>
+        <hr />
+      </header>
+
+      <main>
+        <form onSubmit={handleTodoSubmit}>
+          <input type="text" required placeholder="Adicione uma tarefa..." onChange={handleTodoTextChange} value={todoText} />
+          <button>Criar</button>
+        </form>
+
+        <br />
+
+        <div className="todosState">
+          <span>Tarefas Criada: {todos.length}</span>
+          <br />
+          <span>Concluídas: { }</span>
+        </div>
+
+        <br />
+
+        <ul className="todos">
+          {
+            todos.length > 0 ?
+              <>
+                {
+                  todos.map((todo) => {
+                    return (
+                      <Todo todo={todo} todos={todos} setTodos={setTodos} key={Math.random() * 1000000} />
+                    )
+                  })
+                }
+              </>
+              :
+              <>
+                <img src="./src/assets/clipboard.png" alt="" />
+                <h3>Você ainda não tem tarefas cadastradas</h3>
+                <p>Crie tarefas e organize seus itens a fazer</p>
+              </>
+          }
+        </ul>
+      </main>
+
+      <footer>
+        <hr />
+        <p>Made with ❤️ by Pedro Henrique</p>
+      </footer>
+    </div>
   )
 }
-
-export default App

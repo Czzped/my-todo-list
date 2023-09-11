@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 
-export function Todo({ todo, todos, setTodos }) {
+export function Todo({ todo, todos, setTodos, setCompletedTodos }) {
     const input = useRef(null)
     const [isTodoComplete, setIsTodoComplete] = useState(todo.isComplete)
 
@@ -10,6 +10,7 @@ export function Todo({ todo, todos, setTodos }) {
         })
 
         setTodos(newTodos)
+        setCompletedTodos(() => newTodos.filter(todo => todo.isComplete === true))
 
         localStorage.setItem('todos-list', JSON.stringify(newTodos))
     }
@@ -21,12 +22,11 @@ export function Todo({ todo, todos, setTodos }) {
 
         todos[indexOfTodo].isComplete = !todos[indexOfTodo].isComplete
 
-        setTodos(todos)
         setIsTodoComplete(!isTodoComplete)
+        setTodos(todos)
+        setCompletedTodos(() => todos.filter(todo => todo.isComplete === true))
 
         localStorage.setItem('todos-list', JSON.stringify(todos))
-
-        console.log('Is todo complete? ' + isTodoComplete)
     }
 
     return (

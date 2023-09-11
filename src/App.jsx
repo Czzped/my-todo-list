@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Todo } from "./components/Todo"
 
 export function App() {
@@ -11,6 +11,7 @@ export function App() {
     }
     return []
   })
+  const [completedTodos, setCompletedTodos] = useState(() => todos.filter(todo => todo.isComplete === true))
 
 
   function handleTodoTextChange(ev) {
@@ -49,9 +50,9 @@ export function App() {
         <br />
 
         <div className="todosState">
-          <span>Tarefas Criada: {todos.length}</span>
+          <span>Tarefas Criadas: {todos.length}</span>
           <br />
-          <span>Concluídas: { }</span>
+          <span>Concluídas: {completedTodos.length}</span>
         </div>
 
         <br />
@@ -63,7 +64,7 @@ export function App() {
                 {
                   todos.map((todo) => {
                     return (
-                      <Todo todo={todo} todos={todos} setTodos={setTodos} key={Math.random() * 1000000} />
+                      <Todo todo={todo} todos={todos} setTodos={setTodos} setCompletedTodos={setCompletedTodos} key={Math.random() * 1000000} />
                     )
                   })
                 }

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Todo } from "./Components/Todo"
+import { Todo } from "./components/Todo"
 
 export function App() {
   const [todoText, setTodoText] = useState('')

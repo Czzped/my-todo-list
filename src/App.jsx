@@ -52,7 +52,7 @@ export function App() {
         <div className="TaskPane">
           <span>Tarefas Criadas: {todos.length}</span>
           <br />
-          <span>Concluídas: {completedTodos.length}</span>
+          <span>Concluídas: {completedTodos.length} de {todos.length}</span>
         </div>
         <hr />
 

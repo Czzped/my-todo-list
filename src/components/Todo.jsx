@@ -38,7 +38,9 @@ export function Todo({ todo, todos, setTodos, setCompletedTodos }) {
                     :
                     <span ref={input}>{todo.todoText}</span>
             }
-            <button onClick={removeTodo}>remove</button>
+            <button onClick={removeTodo}>{
+                <img src="../src/assets/trash.png" alt="" />
+            }</button>
         </div>
     )
 }

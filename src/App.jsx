@@ -37,8 +37,7 @@ export function App() {
   return (
     <div className="container">
       <header>
-        <h1>Todo</h1>
-        <hr />
+        <img src="https://todo-rogerinho.vercel.app/assets/logoTodo-c7e0b4eb.svg" alt="logo-img" />
       </header>
 
       <main>
@@ -49,11 +48,12 @@ export function App() {
 
         <br />
 
-        <div className="todosState">
+        <div className="TaskPane">
           <span>Tarefas Criadas: {todos.length}</span>
           <br />
           <span>Concluídas: {completedTodos.length}</span>
         </div>
+        <hr />
 
         <br />
 
@@ -64,23 +64,23 @@ export function App() {
                 {
                   todos.map((todo) => {
                     return (
-                      <Todo todo={todo} todos={todos} setTodos={setTodos} setCompletedTodos={setCompletedTodos} key={Math.random() * 1000000} />
+                      <Todo todo={todo} todos={todos} setTodos={setTodos} setCompletedTodos={setCompletedTodos} key={Math.random() * 100000} />
                     )
                   })
                 }
               </>
               :
-              <>
-                <img src="./src/assets/clipboard.png" alt="" />
+              <div>
+                <img src="./src/assets/" alt="" />
                 <h3>Você ainda não tem tarefas cadastradas</h3>
                 <p>Crie tarefas e organize seus itens a fazer</p>
-              </>
+              </div>
           }
         </ul>
+
       </main>
 
       <footer>
-        <hr />
         <p>Made with ❤️ by Pedro Henrique</p>
       </footer>
     </div>

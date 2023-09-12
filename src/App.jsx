@@ -71,11 +71,12 @@ export function App() {
                 }
               </>
               :
-              <div>
+              <section className="noTodosFoundMessage">
                 <img src={clipboard} alt="clipboard-img" />
+                <br />
                 <h3>Você ainda não tem tarefas cadastradas</h3>
                 <p>Crie tarefas e organize seus itens a fazer</p>
-              </div>
+              </section>
           }
         </ul>
 

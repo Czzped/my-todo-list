@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Todo } from "./components/Todo"
+import clipboard from "./assets/clipboard.svg"
 
 export function App() {
   const [todoText, setTodoText] = useState('')
@@ -71,7 +72,7 @@ export function App() {
               </>
               :
               <div>
-                <img src="./src/assets/" alt="" />
+                <img src={clipboard} alt="clipboard-img" />
                 <h3>Você ainda não tem tarefas cadastradas</h3>
                 <p>Crie tarefas e organize seus itens a fazer</p>
               </div>

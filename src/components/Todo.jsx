@@ -1,4 +1,5 @@
 import { useRef, useState } from "react"
+import trash from "../assets/trash.png"
 
 export function Todo({ todo, todos, setTodos, setCompletedTodos }) {
     const input = useRef(null)
@@ -39,7 +40,7 @@ export function Todo({ todo, todos, setTodos, setCompletedTodos }) {
                     <span ref={input}>{todo.todoText}</span>
             }
             <button onClick={removeTodo}>{
-                <img src="../src/assets/trash.png" alt="" />
+                <img src={trash} alt="trash-img" />
             }</button>
         </div>
     )
